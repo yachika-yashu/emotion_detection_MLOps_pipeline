@@ -156,9 +156,12 @@ This ensures full experiment traceability and reproducibility.
 ---
 
 ## Reproducing the Project
-
+```
 git clone https://github.com/yachika-yashu/emotion_detection_MLOps_pipeline.git
 cd emotion_detection_MLOps_pipeline
 dvc pull
 dvc repro
+```
+
+`📘 Project Documentation   👉 https://yachika-yashu.github.io/emotion_detection_MLOps_pipeline/`
 
