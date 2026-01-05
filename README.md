@@ -23,7 +23,35 @@ The pipeline is fully reproducible using `dvc repro`.
 
 ## Project Structure (CCDS)
 
-`emotion_detection_MLOps_pipeline/ │ ├── data/ │   ├── raw/          # Raw train/test splits │   ├── interim/      # Cleaned & normalized text │   └── processed/    # Feature-engineered datasets │ ├── src/ │   ├── data/ │   │   ├── data_ingestion.py │   │   └── data_preprocessing.py │   ├── features/ │   │   └── feature_engineering.py │   └── model/ │       ├── model_building.py │       └── model_evaluation.py │ ├── models/           # Trained model artifacts (DVC-tracked) ├── reports/          # Evaluation metrics ├── notebooks/        # Exploratory notebooks ├── docs/             # Project documentation │ ├── dvc.yaml ├── dvc.lock ├── params.yaml ├── requirements.txt ├── README.md └── .gitignore`
+emotion_detection_MLOps_pipeline/
+│
+├── data/
+│   ├── raw/          # Raw train/test splits
+│   ├── interim/      # Cleaned & normalized text
+│   └── processed/    # Feature-engineered datasets
+│
+├── src/
+│   ├── data/
+│   │   ├── data_ingestion.py
+│   │   └── data_preprocessing.py
+│   ├── features/
+│   │   └── feature_engineering.py
+│   └── model/
+│       ├── model_building.py
+│       └── model_evaluation.py
+│
+├── models/           # Trained model artifacts (DVC-tracked)
+├── reports/          # Evaluation metrics
+├── notebooks/        # Exploratory notebooks
+├── docs/             # Project documentation
+│
+├── dvc.yaml
+├── dvc.lock
+├── params.yaml
+├── requirements.txt
+├── README.md
+└── .gitignore
+
 
 This project follows the **Cookiecutter Data Science (CCDS)** convention to ensure separation of concerns and long-term maintainability.
 
@@ -129,11 +157,10 @@ This ensures full experiment traceability and reproducibility.
 
 ---
 
-
 ## Reproducing the Project
 
-`git clone https://github.com/yachika-yashu/emotion_detection_MLOps_pipeline.git cd emotion_detection_MLOps_pipeline dvc pull dvc repro`
+git clone https://github.com/yachika-yashu/emotion_detection_MLOps_pipeline.git
+cd emotion_detection_MLOps_pipeline
+dvc pull
+dvc repro
 
-## Reproducing the Project
-
-`git clone https://github.com/yachika-yashu/emotion_detection_MLOps_pipeline.git cd emotion_detection_MLOps_pipeline dvc pull dvc repro`
