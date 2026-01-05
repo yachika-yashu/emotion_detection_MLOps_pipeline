@@ -1,61 +1,155 @@
-# Emotion detection pipeline using DVC
+Emotion Detection – Reproducible ML Pipeline with DVC
+Project Overview
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+This project builds an Emotion Detection machine learning pipeline that classifies text into happiness or sadness.
+The primary objective is to demonstrate a complete MLOps workflow, covering experimentation, pipeline orchestration, reproducibility, and version control.
 
-Emotion detection app that analyzes text to determine whether it conveys happiness or sadness. Primary goal is to integrate the **MLOps process** throughout the project lifecycle.
+The project starts with notebook-based experimentation and evolves into a production-style ML pipeline using:
 
-## Project Organization
+Python
 
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         emotion_detection_pipeline_using_dvc and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── emotion_detection_pipeline_using_dvc   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes emotion_detection_pipeline_using_dvc a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
-```
+DVC (Data Version Control)
 
---------
+Git
 
+Cookiecutter Data Science (CCDS) structure
+
+The pipeline is fully reproducible using dvc repro.
+
+Project Structure (CCDS)
+emotion_detection_MLOps_pipeline/
+│
+├── data/
+│   ├── raw/          # Raw train/test splits
+│   ├── interim/      # Cleaned & normalized text
+│   └── processed/    # Feature-engineered datasets
+│
+├── src/
+│   ├── data/
+│   │   ├── data_ingestion.py
+│   │   └── data_preprocessing.py
+│   ├── features/
+│   │   └── feature_engineering.py
+│   └── model/
+│       ├── model_building.py
+│       └── model_evaluation.py
+│
+├── models/           # Trained model artifacts (DVC-tracked)
+├── reports/          # Evaluation metrics
+├── notebooks/        # Exploratory notebook
+├── docs/             # Project documentation files
+│
+├── dvc.yaml
+├── dvc.lock
+├── params.yaml
+├── requirements.txt
+├── README.md
+└── .gitignore
+
+
+This project follows the Cookiecutter Data Science (CCDS) convention to ensure separation of concerns and long-term maintainability.
+
+ML Pipeline Stages
+1. Data Ingestion
+
+Loading raw Twitter emotion data
+
+Filters required sentiments
+
+Splits data into train and test sets
+
+Outputs stored in data/raw/
+
+2. Data Preprocessing
+
+Text normalization:
+
+Lowercasing
+
+Stopword removal
+
+Lemmatization
+
+URL, punctuation, and number removal
+
+Outputs stored in data/interim/
+
+3. Feature Engineering
+
+TF-IDF vectorization
+
+Configurable feature size via params.yaml
+
+Outputs stored in data/processed/
+
+4. Model Building
+
+Trains a Gradient Boosting classifier
+
+Hyperparameters controlled via params.yaml
+
+Model saved to models/model.pkl
+
+5. Model Evaluation
+
+Computes Accuracy, Precision, Recall, and AUC
+
+Metrics saved to reports/metrics.json
+
+Parameter Management (params.yaml)
+
+All tunable parameters are centralized:
+
+data_ingestion:
+  test_size: 0.2
+
+feature_engineering:
+  max_features: 50
+
+model_building:
+  n_estimators: 25
+  learning_rate: 0.1
+
+
+This enables controlled experimentation without modifying code.
+
+DVC Pipeline
+
+Each pipeline stage is defined using dvc stage add.
+Example:
+
+dvc stage add -n data_ingestion \
+-d src/data/data_ingestion.py \
+-o data/raw \
+-p data_ingestion.test_size \
+python src/data/data_ingestion.py
+
+
+To reproduce the full pipeline:
+
+dvc repro
+
+
+DVC automatically tracks:
+
+Data
+
+Model artifacts
+
+Metrics
+
+Pipeline dependencies
+
+Version Control Strategy
+
+Git → source code, configuration, documentation
+
+DVC → datasets, pipeline outputs, trained models
+
+This ensures full experiment traceability and reproducibility.
+
+Reproducing the Project
+git clone https://github.com/yachika-yashu/emotion_detection_MLOps_pipeline.git
+cd emotion_detection_MLOps_pipeline
+dvc pull
+dvc repro
