@@ -1,16 +1,11 @@
-# Emotion detection pipeline using DVC documentation!
+# Emotion Detection – Reproducible ML Pipeline with DVC
 
-## Description
+This project demonstrates how a notebook-based machine learning experiment can be transformed into a fully reproducible MLOps pipeline using DVC, Git, and a Cookiecutter Data Science (CCDS) structure.
 
-Emotion detection app that analyzes text to determine whether it conveys happiness or sadness. Primary goal is to integrate the **MLOps process** throughout the project lifecycle.
+The pipeline classifies text into two emotions:
 
-## Commands
+1. Happiness
 
-The Makefile contains the central entry points for common tasks related to this project.
+2. Sadness
 
-### Syncing data to cloud storage
-
-* `make sync_data_up` will use `aws s3 sync` to recursively sync files in `data/` up to `s3://emotion detection/data/`.
-* `make sync_data_down` will use `aws s3 sync` to recursively sync files from `s3://emotion detection/data/` to `data/`.
-
-
+The real goal is not just prediction, but engineering discipline: reproducibility, traceability, modularity, and experiment control.
