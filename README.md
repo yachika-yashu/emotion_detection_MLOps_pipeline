@@ -23,13 +23,13 @@ The pipeline is fully reproducible using `dvc repro`.
 
 ## Project Structure (CCDS)
 
+````md
+```text
 emotion_detection_MLOps_pipeline/
-│
 ├── data/
-│   ├── raw/          # Raw train/test splits
-│   ├── interim/      # Cleaned & normalized text
-│   └── processed/    # Feature-engineered datasets
-│
+│   ├── raw/
+│   ├── interim/
+│   └── processed/
 ├── src/
 │   ├── data/
 │   │   ├── data_ingestion.py
@@ -39,12 +39,10 @@ emotion_detection_MLOps_pipeline/
 │   └── model/
 │       ├── model_building.py
 │       └── model_evaluation.py
-│
-├── models/           # Trained model artifacts (DVC-tracked)
-├── reports/          # Evaluation metrics
-├── notebooks/        # Exploratory notebooks
-├── docs/             # Project documentation
-│
+├── models/
+├── reports/
+├── notebooks/
+├── docs/
 ├── dvc.yaml
 ├── dvc.lock
 ├── params.yaml
