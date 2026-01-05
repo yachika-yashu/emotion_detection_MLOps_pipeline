@@ -163,5 +163,5 @@ dvc pull
 dvc repro
 ```
 
-`📘 Project Documentation   👉 https://yachika-yashu.github.io/emotion_detection_MLOps_pipeline/`
+📘 Project Documentation   👉 [https://yachika-yashu.github.io/emotion_detection_MLOps_pipeline](https://yachika-yashu.github.io/emotion_detection_MLOps_pipeline/)
 
