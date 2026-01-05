@@ -50,7 +50,7 @@ emotion_detection_MLOps_pipeline/
 ├── README.md
 └── .gitignore
 
-
+````
 This project follows the **Cookiecutter Data Science (CCDS)** convention to ensure separation of concerns and long-term maintainability.
 
 ---
