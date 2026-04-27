@@ -1,0 +1,13 @@
+site_name: Emotion Detection – Reproducible ML Pipeline
+theme:
+  name: readthedocs
+
+nav:
+  - Home: index.md
+  - Overview: project_overview.md
+  - Project Structure: project_structure.md
+  - ML Pipeline: pipeline.md
+  - Parameters: parameters.md
+  - DVC & Reproducibility: dvc.md
+  - Reproduction: reproduction.md
+  - Why MLOps: why_mlops.md
